@@ -1,5 +1,8 @@
 /.vscode
 /.idea
+/.venv
+/cache
+/data/crime_data.csv
 /data
 /python
 /client/.next
