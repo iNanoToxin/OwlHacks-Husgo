@@ -1,9 +1,13 @@
+from flask import Flask, jsonify, request
 from functools import cache
 import osmnx
 import pickle
 import dask.dataframe as dd
 import os
 import json
+
+app = Flask(__name__)
+
 
 network_types = ["bike", "walk", "drive"]
 
@@ -140,3 +144,23 @@ def get_path(graph_type, longitude_x1, latitude_y1, longitude_x2, latitude_y2):
     for i in shortest_path:
         coordinates.append((selected_graph.nodes[i]["x"], selected_graph.nodes[i]["y"]))
     return json.dumps(coordinates)
+
+
+@app.route("/api/get-path", methods=["POST"])
+def get_path_route():
+    data = request.json
+
+    graph_type = data.get("graph_type")
+    longitude_x1 = data.get("longitude_x1")
+    latitude_y1 = data.get("latitude_y1")
+    longitude_x2 = data.get("longitude_x2")
+    latitude_y2 = data.get("latitude_y2")
+
+    path_coordinates = get_path(
+        graph_type, longitude_x1, latitude_y1, longitude_x2, latitude_y2
+    )
+    return jsonify(path_coordinates)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

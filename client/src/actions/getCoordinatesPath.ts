@@ -9,23 +9,18 @@ export async function getCoordinatesPath({
   fromCordinates: TCordinates;
   toCordinates: TCordinates;
 }) {
-  console.log("asdfsdf")
-  const response = await fetch("https://getcoordinatespath-1041591461837.us-central1.run.app", {
+  const response = fetch("http://127.0.0.1:5000/api/get-path", {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
     }),
     body: JSON.stringify({
       "graph_type":"walk",
-      "longitude_x1": -75.0554076,
-      "latitude_y1": 40.0866726,
-      "longitude_x2": -75.1957886,
-      "latitude_y2": 39.9522188
+      "longitude_x1": fromCordinates.longitude,
+      "latitude_y1": fromCordinates.latitude,
+      "longitude_x2": toCordinates.longitude,
+      "latitude_y2": toCordinates.latitude
     }),
   });
-  console.log(response);
-
-  const coordinatePath: [number, number][] = await response.json();
-
-  return coordinatePath;
+  return response;
 }
