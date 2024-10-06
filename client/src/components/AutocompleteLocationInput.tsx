@@ -3,7 +3,7 @@
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import { Input } from "./ui/input";
 import { useState } from "react";
-import { TCordinates } from "@/app/app/page";
+import { TCordinates } from "@/app/(app)/page";
 import { useToast } from "@/hooks/use-toast";
 
 export default function AutocompleteLocationInput({
@@ -15,7 +15,7 @@ export default function AutocompleteLocationInput({
   state: TCordinates | undefined;
   setState: React.Dispatch<React.SetStateAction<TCordinates | undefined>>;
 }) {
-  const {toast} = useToast()
+  const { toast } = useToast();
 
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | undefined>(undefined);
 
@@ -27,26 +27,26 @@ export default function AutocompleteLocationInput({
 
   const handlePlaceSelect = () => {
     if (autocomplete) {
-      const place = autocomplete!.getPlace()
+      const place = autocomplete!.getPlace();
 
       if (!place.formatted_address?.includes("Philadelphia")) {
-        console.log(place.formatted_address)
         toast({
           title: "Please select a location in Philadelphia",
           description: "We unfortunately have only trained crime data in Philadelphia for now.",
           duration: 2000,
           variant: "destructive",
-        })
-        return
+        });
+        return;
       }
-      
+
       if (place.geometry) {
-        const lat = place.geometry.location?.lat()
-        const lng = place.geometry.location?.lng()
-        setState({ latitude: lat as number, longitude: lng as number })
+        const lat = place.geometry.location?.lat();
+        const lng = place.geometry.location?.lng();
+        setState({ latitude: lat as number, longitude: lng as number });
       }
     }
   };
+
 
   const onLoad = (autocompleteInstance: google.maps.places.Autocomplete) => {
     setAutocomplete(autocompleteInstance);
@@ -60,11 +60,11 @@ export default function AutocompleteLocationInput({
           onPlaceChanged={handlePlaceSelect}
           options={{
             componentRestrictions: {
-              country: "us" 
+              country: "us",
             },
           }}
         >
-          <Input placeholder={placeholder} className="w-full" />
+          <Input placeholder={placeholder} className="w-full pl-8" />
         </Autocomplete>
       </LoadScript>
     </div>
