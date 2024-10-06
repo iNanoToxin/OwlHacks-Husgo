@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Philadelphia",
+        "color": "#FF5733" 
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.280303, 40.071389], 
+          [-75.280303, 39.871944],
+          [-75.014444, 39.871944], 
+          [-75.014444, 40.071389], 
+          [-75.280303, 40.071389] 
+        ]]
+      }
+    }
+  ]
+}
