@@ -33,3 +33,4 @@ crime_weights = {
     "Homicide - Gross Negligence": 0.6,
 }
 
+
