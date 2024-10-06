@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Next.js application built for [your project's purpose or description]. It is designed to provide [briefly explain the functionality or features of the app].
+This is a Next.js application built for PhillyGo. It is designed to allow people in Philadelphia to travel safely and avoid high-crime areas. The app gives the user a path that considers crime rates in certain areas and the speed it takes for a person to travel to their destination.
 
 ## Prerequisites
 
