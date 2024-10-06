@@ -1,3 +1,6 @@
 /.vscode
 /.idea
-/data
+# /data
+/.venv
+/cache
+/data/crime_data.csv
